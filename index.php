@@ -1,6 +1,36 @@
 <!-- Envoie Formulaire -->
 <?php
+//Si on reçois bien le shorcut
+if (isset($_GET['q'])) {
+    //Variable
+    $shortcut = htmlspecialchars($_GET['q']);
 
+    //Connexion à la base de donnée
+
+    $bdd = new PDO('mysql:host=localhost;dbname=bilty;charset=utf8', 'root', 'root');
+
+    //Si le shortcut n'est pas connue
+    $req = $bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE shortcut = ?');
+    $req->execute(array($shortcut));
+
+    //Boucle de control
+    while ($result = $req->fetch()) {
+
+        if ($result['x'] != 1) {
+            header('location: ../raccourcisseurUrl/?error=true&message=Adresse url non connue');
+            exit();
+        }
+    }
+    // Redirection
+    $req = $bdd->prepare('SELECT * FROM links WHERE shortcut = ?');
+    $req->execute(array($shortcut));
+
+    while ($result = $req->fetch()) {
+
+        header('location: ' . $result['url']);
+        exit();
+    }
+}
 //Si elle existe
 if (isset($_POST['url'])) {
     //Variable
@@ -16,21 +46,16 @@ if (isset($_POST['url'])) {
     $shortcut = crypt($url, rand());
 
     //Connexion à la base de donnée
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=bilty;charset=utf8', 'root', 'root');
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
+
+    $bdd = new PDO('mysql:host=localhost;dbname=bilty;charset=utf8', 'root', 'root');
+
     //Si url exite déjà
-    $req  = $bdd->prepare('SELECT COUNT (*) 
-                           AS x 
-                           FROM links
-                           WHERE url = ?');
-    $req->execute((array($url)));
+    $req  = $bdd->prepare('SELECT COUNT(*) AS x FROM links WHERE url = ?');
+    $req->execute(array($url));
 
     //Boucle de controle
     while ($result = $req->fetch()) {
-        if ($req['x'] != 0) {
+        if ($result['x'] != 0) {
             header('location: ../raccourcisseurUrl/?error=true&message=Adresse url déjà raccourcie');
             exit();
         }
@@ -87,11 +112,11 @@ if (isset($_POST['url'])) {
                         <b><?php echo htmlspecialchars($_GET['message']); ?></b>
                     </div>
                 </div>
-            <?php } else if ($_GET['short']) {
-            ?>
+            <?php } else if (isset($_GET['short'])) { ?>
                 <div class="center">
                     <div id="result">
-                        <b>URL RACCOURIE : http://loalhost/q=<?php echo htmlspecialchars($_GET['short']) ?></b>
+                        <b>URL RACCOURCIE : </b>
+                        http://localhost/?q=<?php echo htmlspecialchars($_GET['short']); ?>
                     </div>
                 </div>
             <?php } ?>

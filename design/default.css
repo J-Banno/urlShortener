@@ -87,3 +87,14 @@ footer #logo {
   height: 35px;
   margin: 15px;
 }
+#result {
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 30px;
+  display: inline-block;
+}
+.center {
+  text-align: center;
+}

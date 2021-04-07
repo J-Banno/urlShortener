@@ -10,6 +10,16 @@ body {
 header {
   padding: 30px;
 }
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.9em;
+}
+a {
+  color: #ee6123;
+  font-weight: bold;
+  text-decoration: none;
+}
 h1 {
   color: white;
   text-align: center;
@@ -22,6 +32,12 @@ h2 {
   color: white;
   text-align: center;
   font-weight: 500;
+}
+h3 {
+  margin: 0;
+  color: #ee6123;
+  text-transform: uppercase;
+  padding-bottom: 30px;
 }
 input[type="url"] {
   border-radius: 3px;
@@ -43,6 +59,10 @@ input[type="submit"] {
   font-weight: 700;
   box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0, 4);
 }
+
+footer #logo {
+  height: 35px;
+}
 #hello {
   background: url(./pictures/hello.jpg);
   background-size: cover;
@@ -54,7 +74,16 @@ input[type="submit"] {
 #logo {
   height: 50px;
 }
+#brands {
+  background-color: #eff7fc;
+  padding: 30px;
+  text-align: center;
+}
 .container {
   margin: 0 auto;
   width: 1100px;
+}
+.picture {
+  height: 35px;
+  margin: 15px;
 }

@@ -33,7 +33,25 @@
 
     </section>
 
+    <!-- Brands -->
+    <section id="brands">
 
+        <div class="container">
+            <h3>Ces marques nous font confiance</h3>
+            <img src="design/pictures/1.png" alt="logo entreprise" class="picture">
+            <img src="design/pictures/2.png" alt="logo entreprise" class="picture">
+            <img src="design/pictures/3.png" alt="logo entreprise" class="picture">
+            <img src="design/pictures/4.png" alt="logo entreprise" class="picture">
+        </div>
+        <!-- Footer-->
+        <footer>
+            <img id="logo" src="design/pictures/logo2.png" alt="logo">
+            <p>2018 © Bilty</p>
+            <a href="#">Contact</a>
+            -
+            <a href="#">À Propos</a>
+        </footer>
+    </section>
 </body>
 
 </html>
